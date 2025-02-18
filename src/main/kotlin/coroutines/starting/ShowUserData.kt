@@ -12,7 +12,20 @@ class ShowUserDataUseCase(
     private val view: UserDataView,
     private val notificationScope: CoroutineScope,
 ) {
-    suspend fun show() {}
+    suspend fun show() {
+        val user = coroutineScope {
+            val name = async { repo.getName() }
+            val friends = async { repo.getFriends() }
+            val profile = async { repo.getProfile() }
+            User(
+                name.await(),
+                friends.await(),
+                profile.await()
+            )
+        }
+        view.show(user)
+        notificationScope.launch { repo.notifyProfileShown() }
+    }
 }
 
 interface UserDataRepository {

@@ -25,6 +25,8 @@ dependencies {
     implementation("io.ktor:ktor-client-core:3.0.2")
     implementation("io.ktor:ktor-client-java:3.0.2")
     implementation("io.ktor:ktor-client-websockets:3.0.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 }
 
 tasks.withType<KotlinCompile> {
